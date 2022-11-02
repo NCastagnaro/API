@@ -5,7 +5,7 @@
   "main": "expressAPI.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node expressAI.js"
+    "start": "node expressAPI.js"
   },
   "repository": {
     "type": "git",
