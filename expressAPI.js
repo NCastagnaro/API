@@ -1,6 +1,11 @@
 const express = require('express')
 const app = express()
+const cors = require('cors')
+//Using cors which allows us to use local client side html/CSS/JS code to interact with the API that we have hosted on Render.com
+//You also can use a Chrome extesion to handle cors, if you don't want to install the npm package and use it with express. 
+app.use(cors())
 const PORT = 3000
+
 
 const rappers = {
     '21 savage':{
@@ -19,7 +24,7 @@ const rappers = {
         'birthLocation': 'N/A'
     }
 }
-
+//__dirname is always the directory in which the currently executing script resides
 app.get('/', (request, response) => {
     response.sendFile(__dirname + '/expressAPI.html')
 })
@@ -41,6 +46,10 @@ app.get('/api/:rapperName', (request, response) => {
     console.log('pass')
 })
 
-app.listen(PORT, () => {
+//In many environments, and as a convention, you can set the environment variable PORT to tell your web server what port to listen to. 
+//So, process.env.PORT || PORT (aka 3000) means: whatever is in the environment variable PORT, or 3000 if there is nothing else.
+//If you just passed PORT with a value of 3000 hard-corded to app.listen(), you're always listening on port 3000, which might be just for you, or not
+//depending on your requirements and the requirements of the environment in which you're running your server. 
+app.listen(process.env.PORT || PORT, () => {
     console.log(`App is listening on port ${PORT}!`)
 })
